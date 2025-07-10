@@ -27,14 +27,14 @@ if st.button("Upload to Github"):
   csv = df.to_csv(index = False)
   content = base64.b64encode(csv.encode()).decode()
 
-url = "https://raw.githubusercontent.com/melaniecyq/ML-Practice/main/data2.csv"
-headers = {"Authorization": f"token {st.secrets['github']['token']}"}
-
-payload = {
-  "message": "Add data.csv",
-  "content": content,
-  "branch": "main"
-}
+  url = "https://raw.githubusercontent.com/melaniecyq/ML-Practice/main/data2.csv"
+  headers = {"Authorization": f"token {st.secrets['github']['token']}"}
+  
+  payload = {
+    "message": "Add data.csv",
+    "content": content,
+    "branch": "main"
+  }
 
 r = requests.put(url, headers = headers, json = payload)
 if r.status_code in [200, 201]:
